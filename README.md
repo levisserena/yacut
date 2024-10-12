@@ -33,6 +33,42 @@ source venv/bin/activate
 flask run --app=yacut
 ```
 ___
+### API проекта.
+В папке `postman_collection` есть коллекция запросов, с которой можно ознакомится, например, в программе [Postman](https://www.postman.com/).<br>
+В корне проекта есть файл `openapi.yml` - Подробное описание работы API проекта. Ознакомится можно, загрузив файл, например, на сайте [Swagger Editor](https://editor.swagger.io/).<br>
+
+Примеры:<br>
+___
+Эндпоинт:
+```
+http://127.0.0.1:5000/api/id/
+```
+POST-запрос (JSON):
+```
+{
+  "url": "string",
+  "custom_id": "string"
+}
+```
+Ответ (JSON):
+```
+{
+  "url": "string",
+  "short_link": "string"
+}
+```
+___
+Эндпоинт:
+```
+http://127.0.0.1:5000/api/id/{short_id}/
+```
+Ответ на GET-запрос(JSON):
+```
+{
+  "url": "string"
+}
+```
+___
 ### Информация об авторах.
 Акчурин Лев Ливатович.<br>Студент курса Яндекс Практикума Python-разработчик плюс.<br>
 [Страничка GitHub](https://github.com/levisserena)
