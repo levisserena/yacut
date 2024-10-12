@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}YaCut - укоротитель ссылок{% endblock title %} 
+{% block content %}
+<main>
+  <section class="container my-5 px-4">
+    <h1 class="text-center"><span style="color:red">Ya</span>Cut</h1>
+    <h2 class="text-center my-4">
+      <p><span style="color:red">Ошибка 404</span></p>
+      <p>Ой-ой-ой! Куда-то мы не туда попали!</p>
+      <p>Возможно вы использовали неправильную короткую ссылку?</p>
+    </h2>
+    <p class="text-center">
+      <a href="{{ url_for('index_view') }}">Вернуться на главную</a>
+    </p>
+  </section>
+</main>
+{% endblock content %}

@@ -1,37 +1,40 @@
-Клонировать репозиторий и перейти в него в командной строке:
+# YaCut
+### О проекте.
+Проект YaCut — это сервис укорачивания ссылок. Его назначение — ассоциировать длинную пользовательскую ссылку с короткой, которую предлагает сам пользователь или предоставляет сервис. 
+___
+### При создании проекта использовалось:
+- язык программирования Python 3;
+- фреймворк Flask.
+___
+Чтобы развернуть проект необходимо следующие:
+- Клонировать репозиторий со своего GitHub и перейти в него в командной строке:
 
 ```
-git clone 
+git clone git@github.com:levisserena/yacut.git
 ```
-
+>*Активная ссылка на репозиторий под этой кнопкой* -> [КНОПКА](https://github.com/levisserena/yacut)
+- Перейдите в папку с проектом:
 ```
 cd yacut
 ```
-
-Cоздать и активировать виртуальное окружение:
-
-```
-python3 -m venv venv
-```
-
-* Если у вас Linux/macOS
-
-    ```
-    source venv/bin/activate
-    ```
-
-* Если у вас windows
-
-    ```
-    source venv/scripts/activate
-    ```
-
-Установить зависимости из файла requirements.txt:
+- Создать и активировать виртуальное окружение:
 
 ```
-python3 -m pip install --upgrade pip
+python -m venv venv
 ```
 
 ```
-pip install -r requirements.txt
+source venv/bin/activate
 ```
+
+- Запустите сервер:
+
+```
+flask run --app=yacut
+```
+___
+### Информация об авторах.
+Акчурин Лев Ливатович.<br>Студент курса Яндекс Практикума Python-разработчик плюс.<br>
+[Страничка GitHub](https://github.com/levisserena)
+___
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
