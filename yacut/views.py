@@ -3,17 +3,10 @@ from http import HTTPStatus
 from flask import abort, flash, redirect, render_template, request
 
 from . import app, db
+from .constants import Text as t
 from .forms import URLMapForm
 from .models import URLMap
 from .utils import get_sort_link
-
-TEXT_UNIQUE_ORIGINAL = ('Такой адрес уже есть.'
-                        'Короткая ссылка: {host_url}{short}/')
-TEXT_UNIQUE_SHORT = 'Предложенный вариант короткой ссылки уже существует.'
-TEXT_MAX_LENGTH_LINK = 'Короткая ссылка не должна быть длиннее {} символов.'
-TEXT_RESPONSE = '{host_url}{short}'
-TEXT_CATEGORY_CREATE = 'create'
-TEXT_CATEGORY_FOUND = 'found'
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -26,12 +19,12 @@ def index_view():
         host_url = request.host_url
         if (url_map := URLMap.filter_original(original)) is not None:
             short = url_map.short
-            category = TEXT_CATEGORY_FOUND
+            category = t.CATEGORY_FOUND
         else:
             db.session.add(URLMap(original=original, short=short))
             db.session.commit()
-            category = TEXT_CATEGORY_CREATE
-        flash(TEXT_RESPONSE.format(host_url=host_url, short=short), category)
+            category = t.CATEGORY_CREATE
+        flash(t.RESPONSE.format(host_url=host_url, short=short), category)
     return render_template('index.html', form=form)
 
 
@@ -39,6 +32,6 @@ def index_view():
 def redirect_from_short_to_original(short):
     """Обрабатывает запросы с короткими ссылками - перенаправляет на
     оригинальный адрес."""
-    if not (url_map := URLMap.filter_short(short)):
-        abort(HTTPStatus.NOT_FOUND)
-    return redirect(url_map.original)
+    return redirect(
+        URLMap.query.filter_by(short=short).first_or_404().original
+    )

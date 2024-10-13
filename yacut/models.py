@@ -7,10 +7,7 @@ from settings import (MAX_LENGTH_LINK, MAX_LENGTH_ORIGINAL_LINK,
                       STRING_CHARACTERS)
 
 from . import db
-
-TEXT_VALIDATE_SHORT = ('Короткие ссылки могут быть только из:'
-                       'больших и маленьких латинских буквы,'
-                       'а так же из цифр в диапазоне от 0 до 9.')
+from .constants import Text as t
 
 
 class URLMap(db.Model):
@@ -25,7 +22,7 @@ class URLMap(db.Model):
     @validates('short')
     def validate_short(self, key, short):
         if not all([(symbol in STRING_CHARACTERS) for symbol in short]):
-            raise ValueError(TEXT_VALIDATE_SHORT)
+            raise ValueError(t.VALIDATE_SHORT)
         return short
 
     @classmethod

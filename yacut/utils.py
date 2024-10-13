@@ -22,9 +22,8 @@ def get_sort_substring(min_length_short=LENGTH_SHORT,
 
 def get_sort_link():
     """Генератор id короткой ссылки."""
-    short = False
-    while not short:
+    while True:
         short = get_sort_substring()
-        if URLMap.filter_short(short) is not None:
-            short = False
+        if URLMap.filter_short(short) is None:
+            break
     return short

@@ -1,10 +1,8 @@
 import click
 
 from . import app, db
+from .constants import Text as t
 from .models import URLMap  # noqa: F401
-
-TEXT_CREATE = 'Таблицы базы данных созданы.'
-TEXT_ERROR = 'Произошла ошибка:\n{}'
 
 
 @app.cli.command('create_db')
@@ -13,6 +11,6 @@ def create_db():
     try:
         with app.app_context():
             db.create_all()
-        click.echo(TEXT_CREATE)
+        click.echo(t.CREATE)
     except Exception as error:
-        click.echo(TEXT_ERROR.format(error))
+        click.echo(t.ERROR.format(error))
